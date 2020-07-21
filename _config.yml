@@ -103,7 +103,14 @@ deploy:
   branch: master
 
 # MathJax
-math:
-  engine: 'mathjax'
-  mathjax:
-    src: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML  
+# math:
+#   engine: 'mathjax'
+#   mathjax:
+#     src: https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML  
+
+# Search
+search:
+  path: ./public/search.xml
+  field: all
+  format: html
+  limit: 1000000
