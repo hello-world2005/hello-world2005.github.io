@@ -14,7 +14,7 @@ mathjax: true
 众所周知
 
 当 $p$ 是质数， 对于任意 $a$，有
-$$a^p \equiv 1 \pmod{p}$$
+$$a^{p - 1} \equiv 1 \pmod{p}$$
 
 ## 二次探测
 

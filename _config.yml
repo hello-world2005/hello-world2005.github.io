@@ -110,7 +110,7 @@ deploy:
 
 # Search
 search:
-  path: ./public/search.xml
-  field: all
-  format: html
-  limit: 1000000
+  path: search.xml
+  field: post
+  content: true
+  limit: 100
