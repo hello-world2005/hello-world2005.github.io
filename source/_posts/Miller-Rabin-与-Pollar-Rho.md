@@ -16,7 +16,7 @@ mathjax: true
 当 $p$ 是质数， 对于任意 $a$，有
 $$a^{p - 1} \equiv 1 \pmod{p}$$
 
-## 二次探测
+## 二次剩余
 
 当 $p$ 是质数，对于 $x \in (0, p)$，关于 $x$ 的方程 $x^2 \equiv 1 \pmod{p}$ 的解为 
 $x = 1 \ or \ p$。
@@ -27,7 +27,7 @@ $x = 1 \ or \ p$。
 
 对于任意 $a$，令 $p - 1 = 2^qm, m = 2n + 1, n \in \mathbb{N}$：
 - 根据费马小定理，如果 $a^{p - 1} \not\equiv 1 \pmod{p}$，那么 $p$ 不是质数；
-- 根据二次探测，如果 $a^{p} \equiv 1 \pmod{p}$ 但 $a^{p - 1} \equiv 1 \pmod{p}$，那 $p$ 不是质数。
+- 根据二次剩余，如果 $a^{p} \equiv 1 \pmod{p}$ 但 $a^{p - 1} \equiv 1 \pmod{p}$，那 $p$ 不是质数。
 
 那么我们不断选择 $a$ 进行检验。
 
@@ -38,6 +38,8 @@ $x = 1 \ or \ p$。
 如果是 ``int`` 范围那么 $10$ 次左右可以保证正确，如果是 ``long long`` 那么 $20$ 次。
 
 或者还有一种方法直接令 $a$ 为前 $10 \sim 20$ 个质数，至少 ``long long`` 范围内没有什么问题。
+
+<!--more-->
 
 # Pollar-Rho 分解质因数
 
