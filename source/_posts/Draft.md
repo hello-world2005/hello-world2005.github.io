@@ -38,4 +38,4 @@ $\sum\limits_{i = 1}^{n} \sum \limits_{j = 1}^{m} \sum \limits_{d \mid i, d \mid
 
 ---
 
-$B_t(x) \equiv B_{t - 1}(x) * (2 - A(x) * B_{t - 1}(x)) \pmod{x^{2^t}}$
+$B_t(x) \equiv B_{t - 1}(x)(2 - A(x)B_{t - 1}(x)) \pmod{x^{2^t}}$
