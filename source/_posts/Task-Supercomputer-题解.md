@@ -5,7 +5,7 @@ tags:
 - 动态规划
 - 斜率优化
 categories:
-- [动态规划，斜率优化]
+- [动态规划, 斜率优化]
 mathjax: true
 ---
 
@@ -16,6 +16,8 @@ mathjax: true
 [Link](https://www.luogu.com.cn/problem/P3571)
 
 [原题面](https://szkopul.edu.pl/problemset/problem/e9ycK_efBDBt4aPs-QeqYpwR/site/?key=statement#)
+
+<!--more-->
 
 # 题解
 
