@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://cdn.jsdelivr.net/npm/leancloud-storage@4.6.1/dist/av-min.js"></script>
+</head>
+
+<body>
+  <script type="text/javascript">
+    function Init() {
+      const { Query, User } = AV;
+      AV.init({
+        appId: "5erx7jEDfUcypt9kUShe9Tpj-gzGzoHsz",
+        appKey: "cOwidfeiBFbHKDzKFuaHWjEH",
+        serverURL: "https://helloworld2005.top"
+      });
+    }
+  </script>
+
+  <div class="Init()"></div>
+  <!-- <h1> qwq </h1> -->
+  <script type="text/javascript">
+    function Test() {
+      const { Query, User } = AV;
+      AV.init({
+        appId: "5erx7jEDfUcypt9kUShe9Tpj-gzGzoHsz",
+        appKey: "cOwidfeiBFbHKDzKFuaHWjEH",
+        serverURL: "https://helloworld2005.top"
+      });
+      const Todo = AV.Object.extend('Todo');
+
+      // 构建对象
+      const todo = new Todo();
+
+      // 为属性赋值
+      todo.set('name', 'qwq');
+      todo.set('number', 2);
+
+      // 将对象保存到云端
+      todo.save().then((todo) => {
+        // 成功保存之后，执行其他逻辑
+        console.log(`保存成功。objectId：${todo.id}`);
+      }, (error) => {
+        // 异常处理
+      });
+    }
+    function AddWhk() {
+      QwQ = AV.Object.createWithoutData('chat_count', '5f26c39aa376ad0008878228');
+      QwQ.increment('number');
+    }
+    function AddMsy() {
+      QwQ = AV.Object.createWithoutData('chat_count', '5f26c39f97188b0008b86a7b');
+      QwQ.increment('number');
+    }
+  </script>
+  <button type="button" onclick="Test()"> test </button>
+  <button type="button" onclick="AddWhk()"> whk </button> <br>
+  <button type="button" onclick="AddMsy()"> msy </button> <br>
+</body>
