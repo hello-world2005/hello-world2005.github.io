@@ -39,3 +39,11 @@ $\sum\limits_{i = 1}^{n} \sum \limits_{j = 1}^{m} \sum \limits_{d \mid i, d \mid
 ---
 
 $B_t(x) \equiv B_{t - 1}(x)(2 - A(x)B_{t - 1}(x)) \pmod{x^{2^t}}$
+
+---
+
+~~$f_i(x) = f(x) \frac{w_i}{x - x_i}$~~
+
+~~$F(x) = f(x)\sum\limits_{i = 0}^n \frac{w_i}{x - x_i} y_i$~~
+
+$P_n(x) = y_i\frac{(x - x2)(x - x3) \cdots (x - x_n)(x - x_{n + 1})}{(x_1 - x_2)(x_1 - x_3)\cdots(x_1 - x_n)(x_1 - x_{n + 1})}$
