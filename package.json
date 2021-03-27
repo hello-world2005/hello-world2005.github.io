@@ -9,12 +9,12 @@
     "server": "hexo server"
   },
   "hexo": {
-    "version": "4.2.1"
+    "version": "5.4.0"
   },
   "dependencies": {
     "gulp": "^4.0.2",
-    "hexo": "^4.2.1",
-    "hexo-deployer-git": "^2.1.0",
+    "hexo": "^5.4.0",
+    "hexo-deployer-git": "^3.0.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-baidu-sitemap": "^0.1.9",
     "hexo-generator-category": "^1.0.0",
@@ -27,9 +27,9 @@
     "hexo-renderer-ejs": "^1.0.0",
     "hexo-renderer-mathjax": "^0.6.0",
     "hexo-renderer-pandoc": "^0.3.0",
-    "hexo-renderer-stylus": "^1.1.0",
-    "hexo-server": "^1.0.0",
-    "highlight.js": "^10.5.0",
+    "hexo-renderer-stylus": "^2.0.1",
+    "hexo-server": "^2.0.0",
+    "highlight.js": "^10.7.1",
     "pandoc": "^0.2.0",
     "prismjs": "^1.23.0"
   }
