@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="baidu-site-verification" content="Ue24FCfOQe">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"hello-world2005.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":true,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":10,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="题目大意 丢个 Link">
+<meta property="og:type" content="article">
+<meta property="og:title" content="「SCOI2015」小凸玩密室 题解">
+<meta property="og:url" content="https://hello-world2005.github.io/2020/08/01/%E3%80%8CSCOI2015%E3%80%8D%E5%B0%8F%E5%87%B8%E7%8E%A9%E5%AF%86%E5%AE%A4-%E9%A2%98%E8%A7%A3/index.html">
+<meta property="og:site_name" content="hello_world2005&#39;s blog">
+<meta property="og:description" content="题目大意 丢个 Link">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-08-01T07:57:33.000Z">
+<meta property="article:modified_time" content="2021-03-27T05:38:43.835Z">
+<meta property="article:author" content="hello_world2005">
+<meta property="article:tag" content="动态规划">
+<meta property="article:tag" content="树">
+<meta property="article:tag" content="树形动态规划">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://hello-world2005.github.io/2020/08/01/%E3%80%8CSCOI2015%E3%80%8D%E5%B0%8F%E5%87%B8%E7%8E%A9%E5%AF%86%E5%AE%A4-%E9%A2%98%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>「SCOI2015」小凸玩密室 题解 | hello_world2005's blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">hello_world2005's blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://hello-world2005.github.io/2020/08/01/%E3%80%8CSCOI2015%E3%80%8D%E5%B0%8F%E5%87%B8%E7%8E%A9%E5%AF%86%E5%AE%A4-%E9%A2%98%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="hello_world2005">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="hello_world2005's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          「SCOI2015」小凸玩密室 题解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-08-01 15:57:33" itemprop="dateCreated datePublished" datetime="2020-08-01T15:57:33+08:00">2020-08-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-03-27 13:38:43" itemprop="dateModified" datetime="2021-03-27T13:38:43+08:00">2021-03-27</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">动态规划</span></a>
+                </span>
+                  ，
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/%E6%A0%91%E5%BD%A2%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" itemprop="url" rel="index"><span itemprop="name">树形动态规划</span></a>
+                </span>
+            </span>
+
+          
+            <span id="/2020/08/01/%E3%80%8CSCOI2015%E3%80%8D%E5%B0%8F%E5%87%B8%E7%8E%A9%E5%AF%86%E5%AE%A4-%E9%A2%98%E8%A7%A3/" class="post-meta-item leancloud_visitors" data-flag-title="「SCOI2015」小凸玩密室 题解" title="阅读次数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span class="leancloud-visitors-count"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/08/01/%E3%80%8CSCOI2015%E3%80%8D%E5%B0%8F%E5%87%B8%E7%8E%A9%E5%AF%86%E5%AE%A4-%E9%A2%98%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/08/01/%E3%80%8CSCOI2015%E3%80%8D%E5%B0%8F%E5%87%B8%E7%8E%A9%E5%AF%86%E5%AE%A4-%E9%A2%98%E8%A7%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="题目大意">题目大意</h1>
+<p>丢个 <a target="_blank" rel="noopener" href="https://loj.ac/problem/2009">Link</a></p>
+<span id="more"></span>
+<h1 id="题解">题解</h1>
+<p>注意到题目中的遍历方式： - 联通； - 先点亮子树。</p>
+<p>翻译成人话，就是从节点 <span class="math inline">\(u\)</span> 开始，走 <span class="math inline">\(u\)</span> 的子树，再到 <span class="math inline">\(u\)</span> 的父节点，走 <span class="math inline">\(u\)</span> 父节点的另一棵子树……</p>
+<p>这样的话相当于基本确定了行走顺序。</p>
+<p>对于每一步，如果前面状态确定了那么当前就是确定的，有两种： - <span class="math inline">\(u\)</span> 的 <span class="math inline">\(k\)</span> 级祖先； - <span class="math inline">\(u\)</span> 的 <span class="math inline">\(k\)</span> 级祖先的另一棵子树。</p>
+<p>既然是一棵完全二叉树，总点数是 <span class="math inline">\(2 \times 10^5\)</span>，不难联想到和树高有关的 <span class="math inline">\(O(n \log n)\)</span> 算法。</p>
+<p>设 <span class="math inline">\(dp_{1, i, j}\)</span> 表示第一种转移方式：当走完 <span class="math inline">\(i\)</span> 的子树后到 <span class="math inline">\(i\)</span> 的 <span class="math inline">\(k\)</span> 级祖先的最小花费。</p>
+<p>设 <span class="math inline">\(dp_{2, i, j}\)</span> 表示第二种转移方式：当走完 <span class="math inline">\(i\)</span> 的字数后到 <span class="math inline">\(i\)</span> 的 <span class="math inline">\(k\)</span> 级祖先的另一棵子树的最小花费。</p>
+<p>然后分类讨论一下： - 如果当前点是叶子节点，那么没有转移； - 如果当前点只有左儿子，那么当前节点 <span class="math inline">\(dp\)</span> 的值就是左儿子的 <span class="math inline">\(dp\)</span> 值加上转移所要的花费； - 如果当前点两个孩子都有，那么把先走左儿子和先走右儿子的都算出来取个 <span class="math inline">\(\min\)</span>。</p>
+<p>然后计算答案，枚举以哪个节点作为起始节点，然后可以暴力跳父亲 <span class="math inline">\(\log\)</span> 次计算答案。</p>
+<p>注意对是否有兄弟节点分类讨论。</p>
+<p>所以我们维护一下节点 <span class="math inline">\(u\)</span> 到 <span class="math inline">\(k\)</span> 级祖先的距离 <span class="math inline">\(dis_{u, k}\)</span>，然后这样转移：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Pat</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> k)</span> </span>&#123;  <span class="comment">// u 的 k 级祖先</span></span><br><span class="line">  <span class="keyword">if</span> ((<span class="number">1</span> &lt;&lt; (k - <span class="number">1</span>)) &lt;= u)</span><br><span class="line">    <span class="keyword">return</span> u &gt;&gt; k;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Another</span><span class="params">(<span class="keyword">int</span> u, <span class="keyword">int</span> k)</span> </span>&#123;  <span class="comment">// u 的 k 级祖先的另一个孩子</span></span><br><span class="line">  <span class="keyword">return</span> (u &gt;&gt; (k - <span class="number">1</span>)) ^ <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &gt;= <span class="number">1</span>; --i)</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; ~<span class="built_in">Pat</span>(i, j); ++j) &#123;</span><br><span class="line">    dp1[i][j] = dp2[i][j] = INF;</span><br><span class="line">    <span class="keyword">if</span> ((i &lt;&lt; <span class="number">1</span>) &gt; n) &#123;</span><br><span class="line">      dp1[i][j] = dis[i][j] * a[<span class="built_in">Pat</span>(i, j)];</span><br><span class="line">      dp2[i][j] = (dis[i][j] + dis[<span class="built_in">Another</span>(i, j)][<span class="number">1</span>]) * a[<span class="built_in">Another</span>(i, j)];</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> ((i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>) &gt; n) &#123;</span><br><span class="line">      dp1[i][j] = dp1[i &lt;&lt; <span class="number">1</span>][j + <span class="number">1</span>] + dis[i &lt;&lt; <span class="number">1</span>][<span class="number">1</span>] * a[i &lt;&lt; <span class="number">1</span>];</span><br><span class="line">      dp2[i][j] = dp2[i &lt;&lt; <span class="number">1</span>][j + <span class="number">1</span>] + dis[i &lt;&lt; <span class="number">1</span>][<span class="number">1</span>] * a[i &lt;&lt; <span class="number">1</span>];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      dp1[i][j] = std::<span class="built_in">min</span>(dp2[i &lt;&lt; <span class="number">1</span>][<span class="number">1</span>] + dp1[i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>][j + <span class="number">1</span>] +</span><br><span class="line">                               dis[i &lt;&lt; <span class="number">1</span>][<span class="number">1</span>] * a[i &lt;&lt; <span class="number">1</span>],</span><br><span class="line">                           dp2[i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>][<span class="number">1</span>] + dp1[i &lt;&lt; <span class="number">1</span>][j + <span class="number">1</span>] +</span><br><span class="line">                               dis[i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>][<span class="number">1</span>] * a[i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>]);</span><br><span class="line">      dp2[i][j] = std::<span class="built_in">min</span>(dp2[i &lt;&lt; <span class="number">1</span>][<span class="number">1</span>] + dp2[i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>][j + <span class="number">1</span>] +</span><br><span class="line">                               dis[i &lt;&lt; <span class="number">1</span>][<span class="number">1</span>] * a[i &lt;&lt; <span class="number">1</span>],</span><br><span class="line">                           dp2[i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>][<span class="number">1</span>] + dp2[i &lt;&lt; <span class="number">1</span>][j + <span class="number">1</span>] +</span><br><span class="line">                               dis[i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>][<span class="number">1</span>] * a[i &lt;&lt; <span class="number">1</span> | <span class="number">1</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>然后是统计答案：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">  <span class="keyword">int</span> res = dp1[i][<span class="number">1</span>];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="built_in">Pat</span>(i, <span class="number">1</span>), qwq = i; ~j; qwq = j, j = <span class="built_in">Pat</span>(j, <span class="number">1</span>)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">Another</span>(qwq, <span class="number">1</span>) &lt;= n)</span><br><span class="line">      res += dis[(<span class="built_in">Another</span>(qwq, <span class="number">1</span>))][<span class="number">1</span>] * a[<span class="built_in">Another</span>(qwq, <span class="number">1</span>)] +</span><br><span class="line">             dp1[<span class="built_in">Another</span>(qwq, <span class="number">1</span>)][<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      res += dis[j][<span class="number">1</span>] * a[<span class="built_in">Pat</span>(j, <span class="number">1</span>)];</span><br><span class="line">  &#125;</span><br><span class="line">  ans = std::<span class="built_in">min</span>(ans, res);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>于是做完了。</p>
+<p>主要是要发现题目中隐含的确定顺序。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 动态规划</a>
+              <a href="/tags/%E6%A0%91/" rel="tag"># 树</a>
+              <a href="/tags/%E6%A0%91%E5%BD%A2%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" rel="tag"># 树形动态规划</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/07/31/Task-Supercomputer-%E9%A2%98%E8%A7%A3/" rel="prev" title="Task Supercomputer 题解">
+      <i class="fa fa-chevron-left"></i> Task Supercomputer 题解
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/08/02/%E3%80%8CNOIP2018%E3%80%8D%E4%BF%9D%E5%8D%AB%E7%8E%8B%E5%9B%BD-%E9%A2%98%E8%A7%A3/" rel="next" title="「NOIP2018」保卫王国 题解">
+      「NOIP2018」保卫王国 题解 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E5%A4%A7%E6%84%8F"><span class="nav-number">1.</span> <span class="nav-text">题目大意</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">题解</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">hello_world2005</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">16</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">21</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/hello-world2005" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;hello-world2005" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hello_world2005@outlook.com" title="E-Mail → mailto:hello_world2005@outlook.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">hello_world2005</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/lozad@1/dist/lozad.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : '5erx7jEDfUcypt9kUShe9Tpj-gzGzoHsz',
+      appKey     : 'cOwidfeiBFbHKDzKFuaHWjEH',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : true,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : true,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+</body>
+</html>
